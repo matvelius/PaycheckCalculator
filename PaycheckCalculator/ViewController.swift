@@ -25,10 +25,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var showTotal: UILabel!
     
     @IBAction func calcButton(_ sender: UIButton) {
-        let hours = Int(hoursWorked.text!)
-        let rate = Int(hourlyRate.text!)
-        let total = hours! * rate!
-        showTotal.text = String(total)
+        
+        if hoursWorked.text == "" || hourlyRate.text == "" {
+            
+            // show alert
+            let message = "Please fill out all the fields!"
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: { action in })
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            let hours = Double(hoursWorked.text!)
+            let rate = Double(hourlyRate.text!)
+            let total = hours! * rate!
+            showTotal.text = String(total)
+            
+        }
+        
         //var total = hours * rate
     }
     
